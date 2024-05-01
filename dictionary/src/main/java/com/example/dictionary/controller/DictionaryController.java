@@ -88,8 +88,8 @@ public class DictionaryController {
         return entries;
     }
 
-    @GetMapping("/getWordsThatContainConsecutiveDoubleLetters")
-    public List<Entry> getWordsThatContainConsecutiveDoubleLetters() {
+    @GetMapping("/getWordsThatContainConsecutiveLetters")
+    public List<Entry> getWordsThatContainConsecutiveLetters() {
 
         StopWatch sw = new StopWatch();
         sw.start();
