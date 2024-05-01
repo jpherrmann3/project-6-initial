@@ -1,10 +1,9 @@
 package com.example.dictionary.model;
-import java.util.Objects;
 
 public class Entry {
+
     String word;
     String definition;
-
 
     public Entry() {
     }
@@ -15,7 +14,7 @@ public class Entry {
     }
 
     public String getWord() {
-        return this.word;
+        return word;
     }
 
     public void setWord(String word) {
@@ -23,29 +22,19 @@ public class Entry {
     }
 
     public String getDefinition() {
-        return this.definition;
+        return definition;
     }
 
     public void setDefinition(String definition) {
         this.definition = definition;
     }
 
-    public Entry word(String word) {
-        setWord(word);
-        return this;
-    }
-
-    public Entry definition(String definition) {
-        setDefinition(definition);
-        return this;
-    }
-
     @Override
     public String toString() {
-        return "{" +
-            " word='" + getWord() + "'" +
-            ", definition='" + getDefinition() + "'" +
-            "}";
+        final StringBuilder sb = new StringBuilder("Entry{");
+        sb.append("word='").append(word).append('\'');
+        sb.append(", definition='").append(definition).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
-
 }

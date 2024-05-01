@@ -2,9 +2,7 @@
 This is an example of a microservice application. 
 
 ## Aggregator Application
-The aggrgator application used for this microservice acts as a front-end for our application. This
-
-It also aggregates and runs various algorithms to return the appropriate data.
+The aggregator application used for this microservice acts as a front-end for our application. It also aggregates and runs various algorithms to return the appropriate data.
 
 The aggregator app has examples of:
 - REST services
@@ -50,7 +48,6 @@ The following are instructions on how to complete project 6 for a grade as well 
 
 2. Add a method to the `DictionaryController` that calls your new service method and returns the words to the calling process.  To do this:
 - Copy the `getWordsStartingWith` method
-- Change the @GetMapping to `/getWordsEndingWith/{value}`
 - Change the new method name to `getWordsEndingWith` 
 - Change the method call to the service to `getWordsEndingWith`, which calls the method you created in step 1 above.
 - Change the wording of the log message to reflect the new method's functionality.
@@ -109,7 +106,7 @@ The following are instructions on how to complete project 6 for a grade as well 
 
 4. Test your new aggregator endpoint using a browser or Postman
 
-##### Extra Credit - 50 points
+##### Extra Credit - 20 points
 
 - For extra credit, rewrite the palindrome service method to NOT use streams.
 - You get to decide when/where to use loops, if-statements, etc...
