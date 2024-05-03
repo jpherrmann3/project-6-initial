@@ -78,5 +78,37 @@ public class AggregatorController {
         return entries;
     }
 
+    @GetMapping("/getAllPalindromes")
+    public List<Entry> getAllPalindromes() {
+        StopWatch sw = new StopWatch();
+        sw.start();
+        List<Entry> entries = service.getAllPalindromes();
+        sw.stop();
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Retrieved entries containing palindromes [")
+                .append(entries.size())
+                .append("] entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        logger.info(message);
+        return entries;
+    }
 
+    @GetMapping("/getAllPalindromesV2")
+    public List<Entry> getAllPalindromesV2() {
+        StopWatch sw = new StopWatch();
+        sw.start();
+        List<Entry> entries = service.getAllPalindromesV2();
+        sw.stop();
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Retrieved entries containing palindromes [")
+                .append(entries.size())
+                .append("] entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        logger.info(message);
+        return entries;
+    }
 }
