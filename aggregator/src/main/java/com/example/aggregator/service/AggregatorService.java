@@ -68,8 +68,29 @@ public class AggregatorService {
     }
 
     public List<Entry> getAllPalindromesV2() {
-        final List<Entry> candidates = new ArrayList();
-        return candidates;
+        final List<Entry> palindromes = new ArrayList<>();
+        for(char character = 'a'; character <= 'z'; character++) {
+            String letter = Character.toString(character);
+            List<Entry> entires = restClient.getWordsStartingWith(letter);
+            for(Entry entry: entires) {
+                String word = entry.getWord();
+                int startIndex = 0;
+                int endIndex = word.length() - 1;
+                while(startIndex < endIndex) {
+                    if (word.charAt(startIndex) != word.charAt(endIndex)) {
+                        break;
+                    }
+                    else {
+                        startIndex++;
+                        endIndex--;
+                    }
+                }
+                if (startIndex >= endIndex) {
+                    palindromes.add(entry);
+                }
+            }
+        }
+        return palindromes;
     }
 
 }
