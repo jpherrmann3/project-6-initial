@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.aggregator.model.Entry;
 import com.example.aggregator.service.AggregatorService;
+
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -27,19 +28,54 @@ public class AggregatorController {
     @GetMapping("/")
     public List<Entry> helloWorld() {
         List<Entry> entries = new ArrayList<>();
+        StopWatch sw = new StopWatch();
+        sw.start();
         entries.add(service.getDefinitionFor("hello"));
         entries.add(service.getDefinitionFor("world"));
+        sw.stop();
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Retrieved hello world ")
+                .append("containing [")
+                .append("2] entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        logger.info(message);
         return entries;
     }
 
     @GetMapping("/getDefinitionFor/{word}")
     public Entry getDefinitionFor(@PathVariable String word) {
-        return service.getDefinitionFor(word);
+        StopWatch sw = new StopWatch();
+        sw.start();
+        Entry entry = service.getDefinitionFor(word);
+        sw.stop();
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Retrieved entry for [")
+                .append(word)
+                .append("] in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        logger.info(message);
+        return entry;
     }
 
     @GetMapping("/getWordsThatContainSuccessiveLettersAndStartsWith/{chars}")
     public List<Entry> getWordsThatContainSuccessiveLettersAndStartsWith(@PathVariable String chars) {
-        return service.getWordsThatContainSuccessiveLettersAndStartsWith(chars);
+        StopWatch sw = new StopWatch();
+        sw.start();
+        List<Entry> entries = service.getWordsThatContainSuccessiveLettersAndStartsWith(chars);
+        sw.stop();
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Retrieved entries for successive same letters staring with [")
+                .append(chars)
+                .append("] in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        logger.info(message);
+        return entries;
     }
 
 
